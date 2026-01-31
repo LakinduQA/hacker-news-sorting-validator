@@ -1,114 +1,113 @@
-# Playwright : Hacker News Sorting Test
+# Hacker News Sorting Validator
 
----
+<img src="https://img.shields.io/badge/Playwright-2.x-45ba4b?logo=playwright&logoColor=white" alt="Playwright"> <img src="https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white" alt="Node.js"> <img src="https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript&logoColor=black" alt="JavaScript"> <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT">
 
-## About This Assignment
+## Overview
 
-This project was completed as part of a take-home assignment for the [QA Engineer role at QA Wolf](https://www.task-wolf.com/apply-qae). The assignment required building an automated Playwright test in JavaScript to demonstrate technical skills in web automation, debugging, and best practices. The goal was to validate the sorting of articles on Hacker News, reflecting real-world QA tasks such as:
+An automated testing solution that validates the sorting functionality of Hacker News articles. The test suite navigates through multiple pages, collects the first 100 articles, and verifies they are correctly sorted by published timestamp in descending order. Built using Playwright with best practices including Page Object Model, parallel execution, and CI/CD integration.
 
-- Creating and maintaining Playwright tests
-- Debugging with browser tools
-- Communicating results clearly
-- Delivering reliable, maintainable automation
+## About This Project
 
-For more details on the role and assignment, see the [QA Wolf job description](https://www.task-wolf.com/apply-qae).
+Developed as a technical assessment for the [QA Engineer role at QA Wolf](https://www.task-wolf.com/apply-qae), this project showcases proficiency in test automation, debugging, and software quality engineering. The assignment focused on real-world QA scenarios: building maintainable Playwright tests, effective debugging practices, and clear technical communication.
 
----
+**Key Requirements Delivered:**
 
-## Features
+- ✓ Automated Playwright test suite in JavaScript
+- ✓ Sorting validation across paginated data
+- ✓ Page Object Model architecture
+- ✓ CI/CD integration and reporting
 
-- **Automated Pagination:** Navigates through multiple pages to collect the first 100 unique articles.
-- **Sorting Validation:** Ensures articles are sorted in descending order by published timestamp.
-- **Page Object Model:** Encapsulates page logic in a reusable `HackerNewsPage` class.
-- **Modern Playwright Setup:**
-  - Parallel test execution
-  - HTML reporting
-  - CI integration via GitHub Actions
-- **Linting:** Enforced code quality with ESLint.
+[View QA Wolf role details →](https://www.task-wolf.com/apply-qae)
 
----
+## Key Features
+
+- ✅ **Automated Pagination** — Dynamically navigates through multiple pages to collect 100 unique articles
+- ✅ **Sorting Validation** — Verifies articles are sorted by timestamp in descending order
+- ✅ **Page Object Model** — Clean, maintainable architecture with reusable page components
+- ✅ **Parallel Execution** — Optimized test runtime with concurrent test execution
+- ✅ **CI/CD Ready** — GitHub Actions integration for automated testing
+- ✅ **Comprehensive Reporting** — HTML reports with detailed test results and screenshots
+- ✅ **Code Quality** — ESLint configuration for consistent code standards
+
+## Tech Stack
+
+- **Test Framework:** Playwright 2.x
+- **Language:** JavaScript (ES6+)
+- **Runtime:** Node.js 18+
+- **Code Quality:** ESLint
+- **CI/CD:** GitHub Actions
 
 ## Project Structure
 
-- `pages/HackerNewsPage.js` — Page object for scraping and paginating Hacker News.
-- `tests/hacker-news-sorting.spec.js` — Main Playwright test for sorting validation.
-- `playwright.config.js` — Playwright configuration (parallelism, retries, reporting, etc).
-- `eslint.config.mjs` — ESLint configuration for code quality.
-- `.github/workflows/playwright.yml` — GitHub Actions workflow for CI.
-
----
+```
+├── pages/
+│   └── HackerNewsPage.js          # Page Object Model implementation
+├── tests/
+│   └── hacker-news-sorting.spec.js # Main test suite
+├── playwright.config.js            # Playwright configuration
+├── eslint.config.mjs              # ESLint rules
+└── .github/workflows/             # CI/CD pipeline
+```
 
 ## Getting Started
 
-### 1. Clone the Repository
+### Prerequisites
+
+- Node.js 18 or higher
+- npm or yarn
+
+### Installation
 
 ```bash
-git clone <your-repo-url>
-cd <project-folder>
-```
+# Clone the repository
+git clone https://github.com/LakinduQA/hacker-news-sorting-validator.git
+cd hacker-news-sorting-validator
 
-### 2. Install Dependencies
-
-```bash
+# Install dependencies
 npm install
+
+# Install Playwright browsers
+npx playwright install
 ```
 
----
+## Usage
 
-## Running Tests
-
-Run all tests (headless by default):
+### Running Tests
 
 ```bash
+# Run all tests (headless)
 npx playwright test
-```
 
-Run in headed mode (browser visible):
+# Run with browser UI visible
+npx playwright test --headed
 
-```bash
-npx playwright test --headed --project=chromium
-```
+# Run on specific browser
+npx playwright test --project=chromium
 
----
-
-## Viewing Reports
-
-After running tests, view the HTML report:
-
-```bash
-npx playwright show-report
-```
-
----
-
-## Test Reports
-
-The test-result-png folder contains screenshot of the current test result that have passed. This image provide a visual reference of the report and can be useful for documentation or sharing test outcome.
-
----
-
-## Linting
-
-Check and auto-fix code style issues:
-
-```bash
-npm run lint
-```
-
----
-
-
-## Notes on Live Data & Flakiness
-
-Hacker News is a live site with constantly changing content. Test failures may occur if articles are added/removed during a run, or due to network/pagination issues. If a test fails, simply re-run it. For more reliability, use Playwright's retry option:
-
-```bash
+# Run with retries for reliability
 npx playwright test --retries=2
 ```
 
----
+### View Test Reports
+
+```bash
+# Open HTML report
+npx playwright show-report
+
+# Run linting
+npm run lint
+```
+
+## Important Notes
+
+**Testing Against Live Data:** Hacker News is a live site with constantly changing content. Occasional test failures may occur due to:
+
+- Articles being added/removed during test execution
+- Network latency or temporary pagination issues
+- Server-side caching behavior
+
+The test suite includes retry logic to handle transient failures. For maximum reliability in CI/CD environments, use the `--retries` flag.
 
 ## License
 
 MIT
-
